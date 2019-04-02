@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -47,13 +46,6 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            @if (auth()->check())
-                              @if (auth()->user()->isAdmin)
-                                <li><a href="{{ route('admin.index') }}">Admin Home</a></li>
-                              @else
-                                <li><a href="{{ route('home') }}">User Home</a></li>
-                              @endif
-                            @endif
                             <li>
                               <a href="{{ route('user.update') }}">Welcome <b>{{ Auth::user()->name }}</b></a>
                             </li>

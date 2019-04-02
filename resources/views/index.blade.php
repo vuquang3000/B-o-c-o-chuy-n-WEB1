@@ -4,32 +4,27 @@
   <main>
     <div class="container">
       <section>
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
-          </div>
-        @endif
 
         <h3>Flight Booking</h3>
         <div class="panel panel-default">
           <div class="panel-body">
-            <form role="form" action="{{ route('searchFlight')}}" method="GET">
+            <form role="form" action="{{ route('search')}}" method="GET">
               <div class="row">
                 <div class="col-sm-4">
                   <h4 class="form-heading">1. Flight Destination</h4>
-                  <div class="form-group{{ $errors->has('from') ? ' has-error' : '' }}">
+                  <div class="form-group">
                     <label class="control-label">From: </label>
                     <select class="form-control" name="from" id="from">
-                      @foreach ($airports as $airport)
-                        <option value="{{ $airport->id }}">{{ $airport->city_name }}</option>
+                      @foreach ($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->city_name }} ({{ $city->city_code }})</option>
                       @endforeach
                     </select>
                   </div>
-                  <div class="form-group{{ $errors->has('from') ? ' has-error' : '' }}">
+                  <div class="form-group">
                     <label class="control-label">To: </label>
                     <select class="form-control" name="to" id="to">
-                      @foreach ($airports as $airport)
-                        <option value="{{ $airport->id }}">{{ $airport->city_name }}</option>
+                      @foreach ($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->city_name }} ({{ $city->city_code }})</option>
                       @endforeach
                     </select>
                   </div>
@@ -72,7 +67,7 @@
                     <label class="control-label">Flight Class: </label>
                     <select class="form-control" name="flight-class">
                       @foreach ($flightClasses as $flightClass)
-                        <option value="{{ $flightClass->id }}">{{ $flightClass->flight_class_name }}</option>
+                        <option value="{{ $flightClass->id }}">{{ $flightClass->flight_classes_name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -81,15 +76,6 @@
                   </div>
                 </div>
               </div>
-              @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
             </form>
           </div>
         </div>
